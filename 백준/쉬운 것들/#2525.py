@@ -17,9 +17,10 @@ if inputM >= 60:
     # 먼저 분 단위 올림 체크
     inputH += 1
     inputM -= 60
-    # 이후 시간 단위 내림 체크
-    if inputH >= 24:
-        inputH -= 24
+    
+# 이후 시간 단위 내림 체크
+if inputH >= 24:
+    inputH -= 24
 
 # 결과 출력
 print(inputH, inputM)
