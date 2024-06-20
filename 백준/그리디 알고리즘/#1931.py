@@ -1,6 +1,7 @@
 import sys
 # 데이터 입력
 n = int(input())
+
 lastEnd : int = 0
 res : int = 0
 
