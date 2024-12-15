@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
     // 지우지 말것 -> 자주 쓰임
@@ -45,8 +45,10 @@ public class Main {
                     pictureArea = 0;
 
                     // dfs
-                    dfs(i, j);
+                    // dfs(i, j);
 
+                    // bfs
+                    bfs(i, j);
                     // 탐색 종료 후 그림 개수 1증가
                     pictureCount++;
 
@@ -81,6 +83,31 @@ public class Main {
             // 색이 칠해져 있고 아직 방문하지 않은 경우
             if(map[nx][ny] == 1 && !visited[nx][ny]){
                 dfs(nx, ny);
+            }
+        }
+    }
+
+    private static void bfs(int x, int y){
+        visited[x][y] = true;
+        pictureArea++;
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{x, y});
+
+        while(!queue.isEmpty()){
+            int[] cur = queue.poll();
+
+            for(int i = 0; i < dx.length; i++){
+                int nx = cur[0] + dx[i];
+                int ny = cur[1] + dy[i];
+
+                if(nx < 0 || ny < 0 || nx >= map.length || ny >= map[0].length)
+                    continue;
+
+                if(map[nx][ny] == 1 && !visited[nx][ny]){
+                    visited[nx][ny] = true;
+                    pictureArea++;
+                    queue.add(new int[]{nx, ny});
+                }
             }
         }
     }
