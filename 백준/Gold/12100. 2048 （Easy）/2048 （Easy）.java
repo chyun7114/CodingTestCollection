@@ -9,21 +9,9 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     // 변수들 지워도 됨
-    static class Point {
-        int x;
-        int y;
-
-        Point(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
     static int[][] map;
     static int n;
     static int ans = 0;
-    static int[] dx = { -1, 1, 0, 0 };
-    static int[] dy = { 0, 0, -1, 1 };
     static boolean[][] check;
 
     // 문제 풀이용 함수
@@ -58,7 +46,7 @@ public class Main {
             originalArr[i] = map[i].clone();
         }
 
-         for(int i = 0; i < dx.length; i++) {
+         for(int i = 0; i < 4; i++) {
              // 이동
              move(map, i);
              dfs(count + 1);
@@ -145,37 +133,6 @@ public class Main {
                 }
             }
         }
-    }
-
-
-    private static Point go(int x, int y, int d, int[][] map) {
-        Point p;
-        int r = x;
-        int c = y;
-        while(true) {
-            int nr = r + dx[d];
-            int nc = c + dy[d];
-
-            if(nr < 0 || nr >= n || nc < 0 || nc >= n || (map[nr][nc] != 0 && map[nr][nc] != map[x][y])) {
-                // 이동 불가한 경우
-                p = new Point(r, c);
-                break;
-            }
-
-            if(map[r][c] == map[nr][nc]) {
-                if(check[nr][nc]) {
-                    p = new Point(r, c);
-                    break;
-                }else {
-                    check[nr][nc] = true;
-                }
-            }
-
-            // 다음에 이동 가능한 경우도 있으니 일단 값 저장
-            r = nr;
-            c = nc;
-        }
-        return p;
     }
 
     public static void main(String[] args) throws IOException {
